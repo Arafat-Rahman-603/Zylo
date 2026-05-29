@@ -12,7 +12,9 @@ interface iUser extends Document {
 const userSchema: Schema<iUser> = new Schema({
     clerkId: {
         type: String,
-        required: true
+        required: true,
+        unique: true,
+        index: true
     },
     name: {
         type: String,
@@ -34,4 +36,6 @@ const userSchema: Schema<iUser> = new Schema({
 }, { timestamps: true });
 
 
-const User = mongoose.model<iUser>('User', userSchema)
+const User = (mongoose.models.User as mongoose.Model<iUser>) || mongoose.model<iUser>('User', userSchema);
+
+export default User;
