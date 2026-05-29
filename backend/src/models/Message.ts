@@ -23,14 +23,6 @@ const messageSchema: Schema<iMessage> = new Schema({
         ref: "Chat",
         required: true
     },
-    createdAt: {
-        type: Date,
-        default: Date.now
-    },
-    updatedAt: {
-        type: Date,
-        default: Date.now
-    }
 }, { timestamps: true });
 
 messageSchema.index({ chat: 1, createdAt: 1 });
